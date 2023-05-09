@@ -1,0 +1,45 @@
+Create a clothing store database
+/** Inventory:
+Tshirts (100)
+Tank tops (150)
+Blouses (75)
+Trousers (110)
+Jeans (150)
+Shorts (125)
+Skirts (80)
+Leggings (90)
+Pajamas (85)
+Socks (200)
+Casual dresses (60)
+Formal dresses (95)
+Sandals (155)
+Sneakers (115)
+Boots (120)
+**/
+
+CREATE TABLE Inventory (id INTEGER PRIMARY KEY, Category TEXT, Quantity INTEGER, Price INTEGER, Dept TEXT);
+
+INSERT INTO Inventory values (1, "Tshirts", 100,15,"Tops");
+INSERT INTO Inventory values (2, "Tank tops", 150,10,"Tops");
+INSERT INTO Inventory values (3, "Blouses", 75,25, "Tops");
+INSERT INTO Inventory values (4, "Trousers", 110,25, "Bottoms");
+INSERT INTO Inventory values (5, "Jeans", 150,30, "Bottoms");
+INSERT INTO Inventory values (6, "Shorts", 125,20, "Bottoms");
+INSERT INTO Inventory values (7, "Skirts", 80,20, "Bottoms");
+INSERT INTO Inventory values (8, "Leggings", 90,15, "Bottoms");
+INSERT INTO Inventory values (9, "Pajamas", 85,20, "Loungewear");
+INSERT INTO Inventory values (10, "Socks", 200,8, "Loungewear");
+INSERT INTO Inventory values (11, "Casual dresses",60,30, "Dresses");
+INSERT INTO Inventory values (12, "Formal dresses", 95,40, "Dresses");
+INSERT INTO Inventory values (13, "Sandals", 155,15, "Shoes");
+INSERT INTO Inventory values (14, "Sneakers", 115,80, "Shoes");
+INSERT INTO Inventory values (15, "Boots", 120,70, "Shoes");
+
+Display the database ordered by price
+SELECT * FROM Inventory ORDER BY Price asc;
+
+What is the total number of items in inventory?
+SELECT SUM(Quantity) FROM Inventory;
+
+What is the highest price for an item in inventory?
+SELECT MAX(Price) FROM Inventory;
