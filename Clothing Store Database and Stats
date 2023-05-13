@@ -43,3 +43,6 @@ SELECT SUM(Quantity) FROM Inventory;
 
 What is the highest price for an item in inventory?
 SELECT MAX(Price) FROM Inventory;
+
+Display total quantity of items from each department. 
+SELECT dept, sum(quantity) from inventory group by dept;
