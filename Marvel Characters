@@ -45,7 +45,7 @@ SELECT * FROM Marvels;
 
 /*Show all Marvel characters in order by popularity*/
 SELECT * FROM Marvels 
-    ORDER BY popularity;
+    ORDER BY popularity ASC;
 
 /*Find all Marvel female characters*/
 SELECT * FROM Marvels 
@@ -58,41 +58,41 @@ SELECT * FROM Marvels
 
 /*Find all Marvel characters that have either a good or neutral alignment*/
 SELECT * FROM Marvels 
-    WHERE Alignment IN("Good","Neutral");
+    WHERE Alignment = "Good" OR Alignment =           "Neutral";
     
 /*Find the strongest Marvel superhero*/
-SELECT MAX(strength), name
+SELECT name, MAX(strength)
     AS "Strongest Marvel Superhero"
     FROM Marvels
     WHERE alignment ="Good";
     
 /*Find the weakest Marvel superhero*/
-SELECT MIN(strength), name
+SELECT name, MIN(strength)
     AS "Weakest Marvel Superhero"
     FROM Marvels
     WHERE alignment = "Good";   
 
 /*Find the average strength of Marvel superheroes*/
 SELECT ROUND (AVG(strength))
-    AS "Average Superhero Strength"
+    AS "Average Marvel Superhero Strength"
     FROM Marvels
     WHERE alignment = "Good";
 
 /*Find the strongest Marvel villain*/
-SELECT MAX(strength), name
-    AS "Strongest Villain"
+SELECT name, MAX(strength)
+    AS "Strongest Marvel Villain"
     FROM Marvels
     WHERE alignment = "Bad";
 
 /*Find the weakest Marvel villain*/    
-SELECT MIN(strength), name
-    AS "Weakest Villain"
+SELECT name, MIN(strength)
+    AS "Weakest Marvel Villain"
     FROM Marvels
     WHERE alignment = "Bad"; 
 
 /*Find the average strength of Marvel villains*/
 SELECT ROUND (AVG(strength))
-    AS "Average Villain Strength"
+    AS "Average Marvel Villain Strength"
     FROM Marvels
     WHERE alignment = "Bad";
 
@@ -101,8 +101,26 @@ SELECT ROUND (AVG(strength))
     AS "Average Marvel Character Strength"
     FROM Marvels;
 
-/*Find Marvel character with overall best fighting power*/
-SELECT name, alignment, MAX(Intelligence + Strength + Speed + Durability + Energy_Projection + Fighting_Skills) AS "Overall Fighting Power" FROM Marvels;
+/*Find overall fighting power of all Marvel characters*/
+SELECT name, (Intelligence + Strength + Speed + Durability + Energy_Projection + Fighting_Skills) AS "Overall Fighting Power" FROM Marvels
+ORDER BY "Overall Fighting Power";
+
+/*Find Marvel character with best overall fighting power*/
+SELECT name, max(Intelligence + Strength + Speed + Durability + Energy_Projection + Fighting_Skills)
+AS "Best Overall Fighting Power"
+FROM Marvels;
+
+/*List of Marvel characters with their hometown and alignment ordered by alignment*/
+Select name, Hometown, Alignment from Marvels ORDER BY Alignment;
+
+/*Marvel superheroes in each hometown*/
+SELECT Hometown, count(Hometown) AS "Marvel Heroes per Hometown" FROM Marvels WHERE Alignment = "Good" GROUP BY Hometown;
+
+/*Find the hometown with more than 1 Marvel superhero*/
+SELECT Hometown, count(Hometown) AS "Marvel Heroes per Hometown" FROM Marvels WHERE Alignment = "Good" GROUP BY Hometown HAVING "Marvel Heroes per Hometown" >1;
+
+/*Marvel villains in each hometown*/
+SELECT Hometown, count(Hometown) AS "Marvel Villains per Hometown" FROM Marvels WHERE Alignment = "Bad" GROUP BY Hometown;
 
 /*Table showing Marvel character strength rating ordered by strength*/
 SELECT name, strength,
@@ -114,22 +132,3 @@ SELECT name, strength,
         ELSE "below average"
         END as "Marvel Character Strength Rating"
         FROM Marvels ORDER BY strength;
-
-
-    
-
-
-   
-    
-
-
-    
-       
-    
-    
-    
-
-
-
-
-
