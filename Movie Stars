@@ -1,0 +1,106 @@
+CREATE table Actors
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name    TEXT,
+    date_of_birth TEXT,
+    spouse_id   INTEGER);
+
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Tom Hanks", "07/09/1956", 2);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Rita Wilson", "10/26/1956", 1);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Jada Pinkett Smith", "09/18/1971", 4);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Will Smith", "09/25/1968", 3);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Ryan Reynolds", "10/23/1976", 6);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Blake Lively", "08/25/1987", 5);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Ben Affleck", "08/15/1972", 8);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Jennifer Lopez", "07/24/1969", 7);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Justin Timberlake", "01/31/1981", 10);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Jessica Biel", "03/03/1982", 9);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Freddie Prinze Jr", "03/08/1976", 12);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Sarah Michelle Gellar", "04/14/1977", 11);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Eva Mendes", "03/05/1974", 14);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Ryan Gosling", "11/12/1980", 13);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Penelope Cruz", "04/28/1974", 16);
+INSERT INTO Actors (name, date_of_birth, spouse_id) VALUES ("Javier Bardem", "03/01/1969", 15);
+
+SELECT * from Actors;
+
+CREATE table Movies
+    (id INTEGER PRIMARY KEY,
+    title   TEXT,
+    release_year    INTEGER,
+    actor_id   INTEGER);
+    
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Volunteers", 1985, 1);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Volunteers", 1985, 2);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Women", 2003, 3);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Women", 2003, 13);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Scream 2", 1997, 3);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Scream 2", 1997, 12);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Jersey Girl", 2004, 7);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Jersey Girl", 2004, 8);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Hitch", 2005, 4);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Hitch", 2005, 13);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Ali", 2001, 3);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Ali", 2001, 4);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Green Lantern", 2011, 5);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Green Lantern", 2011, 6);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Gigli", 2003, 7);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Gigli", 2003, 8);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Town", 2010, 6);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Town", 2010, 7);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Summer Catch", 2001, 10);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Summer Catch", 2001, 11);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Scooby-Doo", 2002, 11);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Scooby-Doo", 2002, 12);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Place Beyond the Pines", 2012, 13);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Place Beyond the Pines", 2012, 14);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Counselor", 2013, 15);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("The Counselor", 2013, 16);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Loving Pablo", 2017, 15);
+INSERT INTO Movies (title, release_year, actor_id) VALUES ("Loving Pablo", 2017, 16);
+
+SELECT * from Movies;
+
+CREATE table Spouses
+    (id INTEGER PRIMARY KEY,
+    spouse1_id  INTEGER,
+    spouse2_id  INTEGER);
+    
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (1, 2);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (3, 4);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (5, 6);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (7, 8);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (9, 10);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (11, 12);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (13, 14);
+INSERT into Spouses (spouse1_id, spouse2_id) VALUES (15, 16);
+
+SELECT * FROM Spouses;
+
+/*Match each actor to the movies they are in.*/
+SELECT distinct Actors.name, Movies.title, Movies.release_year 
+    FROM Actors
+    JOIN Movies
+    ON Movies.actor_id = Actors.id;
+
+/*Match each actor to the movies they are in. Limit to movies releases after 2010.*/
+SELECT distinct Actors.name, Movies.title, Movies.release_year 
+    FROM Actors
+    JOIN Movies
+    ON Movies.actor_id = Actors.id 
+    WHERE release_year > 2010;
+
+/*Match each actor to their spouse*/
+SELECT a.name, b.name 
+    FROM Spouses
+    JOIN Actors a
+    ON Spouses.spouse1_id = a.id
+    JOIN Actors b
+    ON Spouses.spouse2_id = b.id;
+    
+
+
+
+
+
+
+
